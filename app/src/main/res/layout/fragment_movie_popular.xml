@@ -8,7 +8,7 @@
         <import type="com.example.sample.model.UiMoviePopular"/>
         <variable
             name="vm"
-            type="com.example.sample.ui.movie.MoviePopularViewModel" />
+            type="com.example.sample.ui.movie.popular.MoviePopularViewModel" />
         <variable
             name="eventHolder"
             type="com.example.sample.model.UiMoviePopular.OnItemClickListener" />
@@ -17,7 +17,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".ui.movie.MoviePopularFragment">
+        tools:context=".ui.movie.popular.MoviePopularFragment">
 
         <!-- TODO: Update blank fragment layout -->
         <androidx.recyclerview.widget.RecyclerView

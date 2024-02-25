@@ -1,25 +1,24 @@
-package com.example.sample.ui.movie
+package com.example.sample.ui.movie.popular
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.sample.BR
 import com.example.sample.R
 import com.example.sample.base.BaseFragment
 import com.example.sample.databinding.FragmentMoviePopularBinding
+import com.example.sample.ext.onReplaceFragment
 import com.example.sample.model.UiMoviePopular
+import com.example.sample.ui.movie.SearchLanguage
+import com.example.sample.ui.movie.detail.MovieDetailFragment
 import com.example.sample.ui.test.TestFragment
 import dagger.hilt.android.AndroidEntryPoint
-import dagger.hilt.android.HiltAndroidApp
 import timber.log.Timber
 
 @AndroidEntryPoint
-class MoviePopularFragment :BaseFragment<FragmentMoviePopularBinding, MoviePopularViewModel>(
-        R.layout.fragment_movie_popular
+class MoviePopularFragment : BaseFragment<FragmentMoviePopularBinding, MoviePopularViewModel>(
+    R.layout.fragment_movie_popular
 ), UiMoviePopular.OnItemClickListener {
 
     companion object {
@@ -29,7 +28,11 @@ class MoviePopularFragment :BaseFragment<FragmentMoviePopularBinding, MoviePopul
     }
 
     override fun onItemClick(item: UiMoviePopular) {
-        Timber.e("onItemClick: $item")
+        this.onReplaceFragment(
+            fragment = MovieDetailFragment(item),
+            containerViewId = R.id.fl_movie_container,
+            addBackStack = true
+        )
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -40,7 +43,7 @@ class MoviePopularFragment :BaseFragment<FragmentMoviePopularBinding, MoviePopul
 
     private fun setupUi() {
         binding.setVariable(BR.eventHolder, this)
-        binding.rvMoviePopular.addOnScrollListener(object : RecyclerView.OnScrollListener(){
+        binding.rvMoviePopular.addOnScrollListener(object : RecyclerView.OnScrollListener() {
             override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
                 super.onScrolled(recyclerView, dx, dy)
 
@@ -57,5 +60,7 @@ class MoviePopularFragment :BaseFragment<FragmentMoviePopularBinding, MoviePopul
             }
         })
     }
+
+    override fun setupObserver() {}
 
 }

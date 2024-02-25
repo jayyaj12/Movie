@@ -12,6 +12,8 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import com.example.sample.R
+import com.example.sample.ui.movie.MovieConstant
+import com.example.sample.ui.movie.MovieConstant.REQUEST_PARAM
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
@@ -19,29 +21,20 @@ import timber.log.Timber
 
 fun Fragment.onReplaceFragment(
     fragment: Fragment,
-    requestKey: String = "",
-    data: Any? = null,
     @IdRes containerViewId: Int,
     addBackStack: Boolean = false
 ) {
     this.parentFragmentManager.beginTransaction().apply {
-        if (requestKey != "") {
-            val bundle = Bundle()
-            data?.let {
-                bundle.putAny("value", data)
-                setFragmentResult(requestKey, bundle)
-            }
-            replace(containerViewId, fragment)
-            if (addBackStack) addToBackStack(fragment.tag)
-            setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
-            commit()
-        }
+        replace(containerViewId, fragment)
+        if (addBackStack) addToBackStack(fragment.tag)
+        setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+        commit()
     }
 }
 
 fun Fragment.popFragment() {
     Timber.e("this.parentFragmentManager.backStackEntryCount ${this.parentFragmentManager.backStackEntryCount}")
-    if(this.parentFragmentManager.backStackEntryCount == 0) {
+    if (this.parentFragmentManager.backStackEntryCount == 0) {
         requireActivity().finish()
     } else {
         this.parentFragmentManager.popBackStack()

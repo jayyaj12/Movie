@@ -59,4 +59,6 @@ abstract class BaseFragment<B : ViewDataBinding, VM : BaseViewModel>(
         }
     }
 
+    abstract fun setupObserver()
+
 }

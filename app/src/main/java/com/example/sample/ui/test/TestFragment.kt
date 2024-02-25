@@ -42,6 +42,8 @@ class TestFragment : BaseFragment<FragmentTestBinding, TestViewModel>(
         })
     }
 
+    override fun setupObserver() {}
+
     override fun onItemClick(item: UiWord) {
         Toast.makeText(context, "item#${item.id} ${item.value} is clicked!", Toast.LENGTH_LONG)
             .show()

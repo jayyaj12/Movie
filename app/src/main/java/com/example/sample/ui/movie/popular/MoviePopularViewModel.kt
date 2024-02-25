@@ -1,4 +1,4 @@
-package com.example.sample.ui.movie
+package com.example.sample.ui.movie.popular
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -6,6 +6,7 @@ import androidx.lifecycle.viewModelScope
 import com.example.sample.base.BaseViewModel
 import com.example.sample.data.repository.MovieRepository
 import com.example.sample.model.UiMoviePopular
+import com.example.sample.ui.movie.SearchLanguage
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject

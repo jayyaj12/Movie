@@ -3,6 +3,7 @@ package com.example.sample.model
 import androidx.recyclerview.widget.DiffUtil
 import com.example.sample.data.api.response.MoviePopularEntity
 
+
 data class UiMoviePopular(
     val id: String,
     val posterPath: String,
