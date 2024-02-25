@@ -1,4 +1,4 @@
-package com.example.sample.ui.movie
+package com.example.sample.ui.movie.list
 
 import android.os.Bundle
 import com.example.sample.R

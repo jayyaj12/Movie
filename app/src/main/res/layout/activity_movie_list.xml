@@ -5,7 +5,7 @@
     <data>
         <variable
             name="vm"
-            type="com.example.sample.ui.movie.MovieListViewModel" />
+            type="com.example.sample.ui.movie.list.MovieListViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
