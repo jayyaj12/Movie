@@ -1,5 +1,7 @@
 package com.example.sample.di
 
+import com.example.sample.data.repository.MovieRepository
+import com.example.sample.data.repository.MovieRepositoryImpl
 import com.example.sample.data.repository.WordRepository
 import com.example.sample.data.repository.WordRepositoryImpl
 import dagger.Binds
@@ -15,5 +17,9 @@ abstract class DataModule {
     @Binds
     @Singleton
     abstract fun bindWordRepository(wordRepositoryImpl: WordRepositoryImpl): WordRepository
+
+    @Binds
+    @Singleton
+    abstract fun bindMovieRepository(movieRepositoryImpl: MovieRepositoryImpl): MovieRepository
 
 }

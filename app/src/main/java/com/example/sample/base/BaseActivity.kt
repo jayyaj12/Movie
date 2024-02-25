@@ -30,6 +30,7 @@ abstract class BaseActivity<B : ViewDataBinding, VM : BaseViewModel>(
         super.onCreate(savedInstanceState)
 
         setupUi()
+        setupObserver()
     }
 
     private fun setupUi() {
@@ -39,5 +40,7 @@ abstract class BaseActivity<B : ViewDataBinding, VM : BaseViewModel>(
             lifecycleOwner = this@BaseActivity
         }
     }
+
+    abstract fun setupObserver()
 
 }

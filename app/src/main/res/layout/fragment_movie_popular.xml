@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:bind="http://schemas.android.com/apk/res-auto"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <import type="com.example.sample.model.UiMoviePopular"/>
+        <variable
+            name="vm"
+            type="com.example.sample.ui.movie.MoviePopularViewModel" />
+        <variable
+            name="eventHolder"
+            type="com.example.sample.model.UiMoviePopular.OnItemClickListener" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".ui.movie.MoviePopularFragment">
+
+        <!-- TODO: Update blank fragment layout -->
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_movie_popular"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            android:orientation="vertical"
+            bind:items="@{vm.getMovieList}"
+            bind:diffCallback="@{(Object)UiMoviePopular.Companion}"
+            bind:eventHolder="@{eventHolder}"
+            bind:itemLayout="@{@layout/item_movie_popular}"
+            android:text="@string/hello_blank_fragment" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

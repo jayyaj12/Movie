@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:bind="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="item"
+            type="com.example.sample.model.UiMoviePopular" />
+
+        <variable
+            name="eventHolder"
+            type="com.example.sample.model.UiMoviePopular.OnItemClickListener" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="@{() -> eventHolder.onItemClick(item)}"
+        android:padding="16dp">
+
+        <ImageView
+            android:id="@+id/iv_poster"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            bind:setImageToUrl="@{item.posterPath}" />
+
+        <TextView
+            android:id="@+id/tv_id"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="8dp"
+            android:text="@{item.id}"
+            android:textSize="16sp"
+            app:layout_constraintStart_toEndOf="@id/iv_poster"
+            app:layout_constraintTop_toTopOf="@id/iv_poster"
+            tools:text="1" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:text="@{item.title}"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="@+id/tv_id"
+            app:layout_constraintTop_toBottomOf="@id/tv_id"
+            tools:text="Kotlin" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

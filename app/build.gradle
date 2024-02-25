@@ -4,7 +4,11 @@ plugins {
     id 'kotlin-kapt'
     id 'kotlin-parcelize'
     id 'dagger.hilt.android.plugin'
+    id 'org.jetbrains.kotlin.plugin.serialization' version "1.7.20"
 }
+
+Properties properties = new Properties()
+properties.load(project.rootProject.file('local.properties').newDataInputStream())
 
 android {
     namespace 'com.example.sample'
@@ -16,6 +20,9 @@ android {
         targetSdk 33
         versionCode 1
         versionName "1.0"
+
+        buildConfigField("String", "TMDB_BASE_URL", properties["tmdb.base.url"])
+        buildConfigField("String", "TMDB_API_KEY", properties["tmdb.api.key"])
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -35,10 +42,26 @@ android {
     }
     buildFeatures {
         dataBinding true
+        buildConfig = true
     }
 }
 
 dependencies {
+    // retrofit
+    implementation "com.squareup.retrofit2:retrofit:2.9.0"
+
+    // okHttp
+    testImplementation("com.squareup.okhttp3:okhttp-urlconnection:4.10.0")
+    implementation("com.squareup.okhttp3:logging-interceptor:4.10.0")
+    implementation("com.squareup.okhttp3:okhttp:4.10.0")
+
+    // serialization
+    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.5.0")
+    implementation("com.jakewharton.retrofit:retrofit2-kotlinx-serialization-converter:0.8.0")
+
+    // glide
+    implementation 'com.github.bumptech.glide:glide:4.16.0'
+
     implementation 'androidx.core:core-ktx:1.8.0'
     implementation 'androidx.appcompat:appcompat:1.6.1'
     implementation 'com.google.android.material:material:1.5.0'

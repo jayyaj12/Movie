@@ -9,6 +9,7 @@ import com.example.sample.BR
 import com.example.sample.R
 import com.example.sample.base.BaseActivity
 import com.example.sample.databinding.ActivityMainBinding
+import com.example.sample.ext.addFragment
 import com.example.sample.model.UiWord
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -45,6 +46,9 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>(
 
     override fun onItemClick(item: UiWord) {
         Toast.makeText(this, "item#${item.id} ${item.value} is clicked!", Toast.LENGTH_LONG).show()
+    }
+
+    override fun setupObserver() {
     }
 
     companion object {
