@@ -1,15 +1,12 @@
 package com.example.sample.ui.movie.detail
 
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.SavedStateHandle
 import com.example.sample.base.BaseViewModel
 import com.example.sample.model.UiMoviePopular
 
-class MovieDetailViewModel: BaseViewModel() {
+class MovieDetailViewModel(stateHandle: SavedStateHandle): BaseViewModel() {
 
-    var movieItem = MutableLiveData<UiMoviePopular>()
-
-    fun setMovieItem(item: UiMoviePopular) {
-        movieItem.value = item
-    }
-
+    var movieItem: LiveData<UiMoviePopular> = stateHandle.getLiveData("movie")
 }

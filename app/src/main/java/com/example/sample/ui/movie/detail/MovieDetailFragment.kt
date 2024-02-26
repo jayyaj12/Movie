@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.setFragmentResultListener
+import androidx.navigation.fragment.navArgs
 import com.example.sample.R
 import com.example.sample.base.BaseFragment
 import com.example.sample.databinding.FragmentMovieDetailBinding
@@ -16,12 +17,10 @@ import dagger.hilt.android.AndroidEntryPoint
 import timber.log.Timber
 
 @AndroidEntryPoint
-class MovieDetailFragment(private val movieItem: UiMoviePopular): BaseFragment<FragmentMovieDetailBinding, MovieDetailViewModel>(R.layout.fragment_movie_detail){
+class MovieDetailFragment: BaseFragment<FragmentMovieDetailBinding, MovieDetailViewModel>(R.layout.fragment_movie_detail){
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        viewModel.setMovieItem(movieItem)
     }
 
     override fun setupObserver() {}

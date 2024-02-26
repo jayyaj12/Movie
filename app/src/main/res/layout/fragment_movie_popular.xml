@@ -31,6 +31,7 @@
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             android:orientation="vertical"
             bind:items="@{vm.getMovieList}"
+            tools:listitem="@layout/item_movie_popular"
             bind:diffCallback="@{(Object)UiMoviePopular.Companion}"
             bind:eventHolder="@{eventHolder}"
             bind:itemLayout="@{@layout/item_movie_popular}"

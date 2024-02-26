@@ -1,15 +1,17 @@
 package com.example.sample.model
 
+import android.os.Parcelable
 import androidx.recyclerview.widget.DiffUtil
 import com.example.sample.data.api.response.MoviePopularEntity
+import kotlinx.parcelize.Parcelize
 
-
+@Parcelize
 data class UiMoviePopular(
     val id: String,
     val posterPath: String,
     val title: String,
     val overview: String
-) {
+): Parcelable {
 
     interface OnItemClickListener {
         fun onItemClick(item: UiMoviePopular)

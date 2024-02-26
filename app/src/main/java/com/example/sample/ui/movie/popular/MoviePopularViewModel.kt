@@ -18,6 +18,7 @@ class MoviePopularViewModel @Inject constructor(private val movieRepository: Mov
 
     private var _getMovieList = MutableLiveData<MutableList<UiMoviePopular>>(mutableListOf())
     val getMovieList: LiveData<MutableList<UiMoviePopular>> get() = _getMovieList
+    private var isRequestInProgress = false
 
     init {
         getMoviePopular(languageParam = SearchLanguage.KO)
@@ -25,8 +26,11 @@ class MoviePopularViewModel @Inject constructor(private val movieRepository: Mov
 
     // 인기 영화 조회
     fun getMoviePopular(languageParam: SearchLanguage) {
+        if(isRequestInProgress) return
+        
         val language: String = getLanguage(languageParam)
         viewModelScope.launch {
+            isRequestInProgress = true
             val items = movieRepository.getMoviePopular(
                 language = language,
                 page = getMoviePage.value ?: 1
@@ -39,7 +43,9 @@ class MoviePopularViewModel @Inject constructor(private val movieRepository: Mov
                 } else {
                     getMovieList.value?.apply { addAll(it) }
                 }
+                isRequestInProgress = false
             }.onFailure {
+                isRequestInProgress = false
 
             }
         }

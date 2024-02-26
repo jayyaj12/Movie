@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/moviePopularFragment">
+
+    <activity
+        android:id="@+id/movieListActivity"
+        tools:layout="@layout/activity_movie_list"
+        android:name="com.example.sample.ui.movie.list.MovieListActivity"
+        android:label="MovieListActivity" />
+    <fragment
+        android:id="@+id/movieDetailFragment"
+        tools:layout="@layout/fragment_movie_detail"
+        android:name="com.example.sample.ui.movie.detail.MovieDetailFragment"
+        android:label="MovieDetailFragment" >
+        <argument
+            android:name="movie"
+            app:argType="com.example.sample.model.UiMoviePopular" />
+    </fragment>
+    <fragment
+        android:id="@+id/moviePopularFragment"
+        tools:layout="@layout/fragment_movie_popular"
+        android:name="com.example.sample.ui.movie.popular.MoviePopularFragment"
+        android:label="MoviePopularFragment" >
+        <action
+            android:id="@+id/action_moviePopularFragment_to_movieDetailFragment"
+            app:destination="@id/movieDetailFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim"
+            app:popUpToInclusive="false" />
+    </fragment>
+</navigation>

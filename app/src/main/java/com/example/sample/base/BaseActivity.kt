@@ -1,16 +1,20 @@
 package com.example.sample.base
 
 import android.os.Bundle
+import androidx.annotation.IdRes
 import androidx.annotation.LayoutRes
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.lifecycle.ViewModelLazy
+import androidx.navigation.NavController
+import androidx.navigation.fragment.NavHostFragment
 import com.example.sample.BR
+import com.example.sample.R
 import java.lang.reflect.ParameterizedType
 
 abstract class BaseActivity<B : ViewDataBinding, VM : BaseViewModel>(
-    @LayoutRes private val layoutResId: Int,
+    @LayoutRes private val layoutResId: Int
 ) : AppCompatActivity() {
 
     protected lateinit var binding: B
