@@ -2,8 +2,8 @@ package com.example.sample.di
 
 import com.example.sample.data.repository.MovieRepository
 import com.example.sample.data.repository.MovieRepositoryImpl
-import com.example.sample.data.repository.WordRepository
-import com.example.sample.data.repository.WordRepositoryImpl
+import com.example.sample.data.repository.WeatherRepository
+import com.example.sample.data.repository.WeatherRepositoryImpl
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
@@ -16,10 +16,10 @@ abstract class DataModule {
 
     @Binds
     @Singleton
-    abstract fun bindWordRepository(wordRepositoryImpl: WordRepositoryImpl): WordRepository
+    abstract fun bindMovieRepository(movieRepositoryImpl: MovieRepositoryImpl): MovieRepository
 
     @Binds
     @Singleton
-    abstract fun bindMovieRepository(movieRepositoryImpl: MovieRepositoryImpl): MovieRepository
+    abstract fun bindWeatherRepository(weatherRepositoryImpl: WeatherRepositoryImpl): WeatherRepository
 
 }

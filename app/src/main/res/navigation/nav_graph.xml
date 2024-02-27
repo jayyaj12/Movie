@@ -3,12 +3,12 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/moviePopularFragment">
+    app:startDestination="@id/weatherFragment">
 
     <activity
         android:id="@+id/movieListActivity"
-        tools:layout="@layout/activity_movie_list"
-        android:name="com.example.sample.ui.movie.list.MovieListActivity"
+        tools:layout="@layout/activity_main"
+        android:name="com.example.sample.ui.movie.main.MainActivity"
         android:label="MovieListActivity" />
     <fragment
         android:id="@+id/movieDetailFragment"
@@ -33,4 +33,14 @@
             app:popExitAnim="@anim/nav_default_pop_exit_anim"
             app:popUpToInclusive="false" />
     </fragment>
+    <fragment
+        android:id="@+id/weatherFragment"
+        tools:layout="@layout/fragment_weather"
+        android:name="com.example.sample.ui.weather.WeatherFragment"
+        android:label="WeatherFragment" />
+    <fragment
+        android:id="@+id/placeFragment"
+        tools:layout="@layout/fragment_place"
+        android:name="com.example.sample.ui.place.PlaceFragment"
+        android:label="PlaceFragment" />
 </navigation>

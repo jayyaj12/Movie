@@ -3,7 +3,7 @@ package com.example.sample.di
 import com.example.mvvmexample.util.network.CustomCallAdapterFactory
 import com.example.sample.BuildConfig
 import com.example.sample.data.api.MovieApiService
-import com.example.sample.data.api.WordApiService
+import com.example.sample.data.api.WeatherApiService
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
 import dagger.Module
 import dagger.Provides
@@ -15,11 +15,20 @@ import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
+import javax.inject.Qualifier
 import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
 object NetworkModule {
+
+    @Qualifier
+    @Retention(AnnotationRetention.BINARY)
+    annotation class OpenWeatherRetrofit
+
+    @Qualifier
+    @Retention(AnnotationRetention.BINARY)
+    annotation class TMDBMovieRetrofit
 
     @Singleton
     @Provides
@@ -51,8 +60,24 @@ object NetworkModule {
 
     @Singleton
     @Provides
-    fun provideRetrofit(okHttpClient: OkHttpClient) = run {
+    @TMDBMovieRetrofit
+    fun provideTMDBRetrofit(okHttpClient: OkHttpClient) = run {
         Retrofit.Builder().client(okHttpClient).baseUrl(BuildConfig.TMDB_BASE_URL)
+            .addCallAdapterFactory(CustomCallAdapterFactory()).addConverterFactory(
+                Json {
+                    isLenient = true
+                    ignoreUnknownKeys = true // 지정되지 않은 key 값은 무시
+                    coerceInputValues = true // default 값 설정
+                    explicitNulls = false // 없는 필드는 null로 설정
+                }.asConverterFactory("application/json".toMediaType())
+            ).build()
+    }
+
+    @Singleton
+    @Provides
+    @OpenWeatherRetrofit
+    fun provideOpenWeatherRetrofit(okHttpClient: OkHttpClient) = run {
+        Retrofit.Builder().client(okHttpClient).baseUrl(BuildConfig.OPEN_WEATHER_API_URL)
             .addCallAdapterFactory(CustomCallAdapterFactory()).addConverterFactory(
                 Json {
                     isLenient = true
@@ -65,11 +90,10 @@ object NetworkModule {
 
     @Provides
     @Singleton
-    fun provideApiService(): WordApiService = WordApiService()
-
+    fun provideMovieApiService(@TMDBMovieRetrofit retrofit: Retrofit): MovieApiService = retrofit.create(MovieApiService::class.java)
 
     @Provides
     @Singleton
-    fun provideMovieApiService(retrofit: Retrofit): MovieApiService = retrofit.create(MovieApiService::class.java)
+    fun provideWeatherApiService(@OpenWeatherRetrofit retrofit: Retrofit): WeatherApiService = retrofit.create(WeatherApiService::class.java)
 
 }

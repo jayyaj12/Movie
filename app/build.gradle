@@ -24,6 +24,8 @@ android {
 
         buildConfigField("String", "TMDB_BASE_URL", properties["tmdb.base.url"])
         buildConfigField("String", "TMDB_API_KEY", properties["tmdb.api.key"])
+        buildConfigField("String", "OEPN_WEATHER_API_KEY", properties["open.weather.api.key"])
+        buildConfigField("String", "OPEN_WEATHER_API_URL", properties["open.weather.api.url"])
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
